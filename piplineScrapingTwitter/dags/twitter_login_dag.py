@@ -17,16 +17,17 @@ DAG_DEFAULT_ARGS = {
 
 
 with DAG (
-    'twitter_login_dag',
+    'il_de_france_info_trafic_twitter_dag',
     description='A simple DAG to login to Twitter',
     default_args=DAG_DEFAULT_ARGS,
     schedule_interval='0 1 * * *',
     catchup=False,
     max_active_runs=1,
+    params={}
 ) as dag:
     # Define the task
     login_twitter_task = PythonOperator(
-        task_id='login_twitter',
+        task_id='il_de_france_info_trafic_twitter',
         python_callable=main,
         dag=dag
     )
