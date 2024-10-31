@@ -36,23 +36,26 @@ COMPTES_TWITTER_METRO = [
     "https://x.com/Ligne14_RATP",
 ]
 
-LIGNE_TYPE = "RER"  # ou le type que vous souhaitez utiliser
 
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 1, 1),
+    'start_date': datetime(2024, 10, 29),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
+    'max_active_runs': 1,  # Limite le nombre d'instances simultanées
 }
 
 dag = DAG(
     'il_de_france_twitter',
     default_args=default_args,
     description='Scraping des tweets il de france',
-    schedule_interval=None,
+    schedule_interval='*/5 * * * *',  # Exécution toutes les 10 minutes
+    catchup=False,  # Empêche l'exécution des DAGs manqués
+    concurrency=2,  # Limite le nombre de tâches simultanées
+    max_active_runs=1  # Limite le nombre d'instances du DAG
 )
 
 rer_twitter = PythonOperator(
@@ -60,7 +63,6 @@ rer_twitter = PythonOperator(
     python_callable=main,
     op_kwargs={
         'comptes_twitter': COMPTES_TWITTER_RER,
-        'ligne_type': LIGNE_TYPE
     },
     dag=dag,
 )
@@ -69,12 +71,12 @@ metro_twitter = PythonOperator(
     python_callable=main,
     op_kwargs={
         'comptes_twitter': COMPTES_TWITTER_METRO,
-        'ligne_type': "METRO"
     },
     
     dag=dag,
 )
-rer_twitter >> metro_twitter
+rer_twitter 
+metro_twitter
 
 
 
