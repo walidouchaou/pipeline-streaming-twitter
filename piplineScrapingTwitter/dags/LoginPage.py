@@ -30,9 +30,9 @@ class LoginPage(BasePage):
 
     def __init__(self) -> None:
         super().__init__()
-        self.username: str = "yannioucha3706"
-        self.password: str = "Wm16062017@"
-        self.email: str = "walidouchaou1998@gmail.com"
+        self.username: str = ""
+        self.password: str = ""
+        self.email: str = ""
         self.wait: WebDriverWait = WebDriverWait(self.driver, 10)
         logging.basicConfig(level=logging.INFO)
         self.logger: logging.Logger = logging.getLogger(__name__)
