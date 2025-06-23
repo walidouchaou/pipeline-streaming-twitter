@@ -1,21 +1,33 @@
-# Twitter Scraping Pipeline
+# 🚇 Twitter Scraping Pipeline for Paris Public Transport 🚆
 
 This project is a data pipeline that scrapes tweets from specific Twitter accounts related to Paris public transport (RER and Metro) and stores them in a PostgreSQL database. The pipeline is orchestrated using Apache Airflow and the entire application is containerized using Docker.
 
-## Features
+## ✨ Features
 
-- **Automated Scraping:** The pipeline automatically scrapes tweets every 5 minutes.
-- **Scalable:** The use of Airflow and Docker allows for easy scaling of the application.
-- **Resilient:** The pipeline is designed to be resilient to errors and failures.
-- **Data Storage:** Scraped tweets are stored in a PostgreSQL database for easy access and analysis.
-- **Containerized:** The entire application is containerized, making it easy to set up and run on any machine.
+-   🤖 **Automated Scraping:** The pipeline automatically scrapes tweets every 5 minutes.
+-   🚀 **Scalable:** The use of Airflow and Docker allows for easy scaling of the application.
+-   💪 **Resilient:** The pipeline is designed to be resilient to errors and failures.
+-   💾 **Data Storage:** Scraped tweets are stored in a PostgreSQL database for easy access and analysis.
+-   📦 **Containerized:** The entire application is containerized, making it easy to set up and run on any machine.
 
-## Prerequisites
+## 🛠️ Built With
 
-- Docker
-- Docker Compose
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white" alt="Apache Airflow"/>
+  <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white" alt="Selenium"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+</p>
 
-## Installation
+## 📋 Prerequisites
+
+-   Docker
+-   Docker Compose
+
+## 🚀 Getting Started
+
+### Installation
 
 1.  **Clone the repository:**
 
@@ -26,14 +38,20 @@ This project is a data pipeline that scrapes tweets from specific Twitter accoun
 
 2.  **Create a `.env` file:**
 
-    Create a `.env` file in the `piplineScrapingTwitter` directory and add the following environment variables:
+    Create a `.env` file in the `piplineScrapingTwitter` directory and add the following environment variables. This file will store your Twitter credentials and other configurations.
 
-    ```
+    ```dotenv
+    # Airflow base config
     POSTGRES_USER=airflow
     POSTGRES_PASSWORD=airflow
     POSTGRES_DB=airflow
     _AIRFLOW_WWW_USER_USERNAME=airflow
     _AIRFLOW_WWW_USER_PASSWORD=airflow
+    
+    # Twitter Credentials
+    TWITTER_USERNAME="your_twitter_username"
+    TWITTER_PASSWORD="your_twitter_password"
+    TWITTER_EMAIL="your_twitter_email"
     ```
 
 3.  **Build and run the containers:**
@@ -73,11 +91,3 @@ pipeline-streaming-twitter/
     - init-airflow.sh
     - requirements.txt
 ```
-
-## Built With
-
--   [Python](https://www.python.org/)
--   [Apache Airflow](https://airflow.apache.org/)
--   [Selenium](https://www.selenium.dev/)
--   [Docker](https://www.docker.com/)
--   [PostgreSQL](https://www.postgresql.org/)
